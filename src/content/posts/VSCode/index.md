@@ -53,7 +53,7 @@ draft: false
 
 > *macOS 用户直接在终端运行 `xcode-select --install` 安装 Clang/GCC*
 >
-> *Linux 用户直接 `sudo apt install build-essential` 即可。*
+> *Linux 用户直接 `sudo apt install build-essential` 即可*
 
 ---
 
