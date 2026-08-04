@@ -8,8 +8,8 @@ import type {
 import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
-	title: "ganyvze的博客",
-	subtitle: "记录生活与技术",
+	title: "博客",
+	subtitle: "oirush",
 	lang: "zh_CN", // Language code, e.g. 'en', 'zh_CN', 'ja', etc.
 	themeColor: {
 		hue: 250, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
@@ -59,8 +59,8 @@ export const navBarConfig: NavBarConfig = {
 
 export const profileConfig: ProfileConfig = {
 	avatar: "assets/images/demo-avatar.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
-	name: "ganyvze",
-	bio: "欢迎来到我的博客✨",
+	name: "oirush",
+	bio: "欢迎来到oirush的博客✨",
 	links: [
 //		{
 //			name: "GitHub",
