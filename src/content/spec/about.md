@@ -1,2 +1,2 @@
 # 关于
-欢迎来到我的博客✨
+[oirush](https://oirush.xyz)的博客
