@@ -46,12 +46,12 @@ export const navBarConfig: NavBarConfig = {
 		LinkPreset.About,
 		{
 			name: "游戏",
-			url: "https://game.ganyvze.xyz", // Internal links should not include the base path, as it is automatically added
+			url: "https://game.oirush.xyz", // Internal links should not include the base path, as it is automatically added
 			external: true, // Show an external link icon and will open in a new tab
 		},
 		{
 			name: "oirush",
-			url: "https://ganyvze.xyz",
+			url: "https://oirush.xyz",
 			external: true,
 		},
 	],
