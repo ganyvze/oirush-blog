@@ -1,0 +1,73 @@
+<section class="mx-auto mt-12 px-0 w-full max-w-[var(--content-width)]">
+    <div id="giscus-container"></div>
+</section>
+
+<script is:inline>
+    function getGiscusTheme() {
+        const isDark = document.documentElement.classList.contains('dark') || 
+                       document.documentElement.getAttribute('data-theme') === 'dark' ||
+                       localStorage.getItem('theme') === 'dark';
+        return isDark ? 'transparent_dark' : 'light';
+    }
+
+    function loadGiscus() {
+        const container = document.getElementById('giscus-container');
+        if (!container || container.querySelector('.giscus-frame')) return; // 避免重复加载
+
+        const currentTheme = getGiscusTheme();
+        const script = document.createElement('script');
+        script.src = 'https://giscus.app/client.js';
+        script.setAttribute('data-repo', 'ganyvze/blog');
+        script.setAttribute('data-repo-id', 'R_kgDOR_FN1Q');
+        script.setAttribute('data-category', 'Announcements');
+        script.setAttribute('data-category-id', 'DIC_kwDOR_FN1c4C6iWC');
+        script.setAttribute('data-mapping', 'pathname');
+        script.setAttribute('data-strict', '0');
+        script.setAttribute('data-reactions-enabled', '1');
+        script.setAttribute('data-emit-metadata', '0');
+        script.setAttribute('data-input-position', 'bottom');
+        script.setAttribute('data-theme', currentTheme);
+        script.setAttribute('data-lang', 'zh-CN');
+        script.setAttribute('data-loading', 'eager'); // 关键修改：改为 eager 立即加载
+        script.setAttribute('crossorigin', 'anonymous');
+        script.async = true;
+
+        container.innerHTML = ''; 
+        container.appendChild(script);
+    }
+
+    function updateGiscusTheme() {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+
+        const theme = getGiscusTheme();
+        iframe.contentWindow.postMessage(
+            { giscus: { setConfig: { theme: theme } } },
+            'https://giscus.app'
+        );
+    }
+
+    // --- 立即执行逻辑 ---
+
+    // 1. 针对 Astro 的 View Transitions：在页面加载完成时立即运行
+    document.addEventListener('astro:page-load', () => {
+        loadGiscus();
+    });
+
+    // 2. 备用：如果没开启 View Transitions，确保在 DOM 解析后立即运行
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', loadGiscus);
+    } else {
+        loadGiscus();
+    }
+
+    // 3. 监听主题切换（保持实时响应）
+    const observer = new MutationObserver((mutations) => {
+        updateGiscusTheme();
+    });
+
+    observer.observe(document.documentElement, { 
+        attributes: true, 
+        attributeFilter: ['class', 'data-theme'] 
+    });
+</script>
